@@ -1,0 +1,22 @@
+SELECT 
+       MONTH(record_date), 
+       MAX(Case when data_type = 'max' then data_value End) AS max, 
+       MIN(Case when data_type = 'min' then data_value End) AS min,
+       round(AVG(CASE WHEN data_type = 'avg' then data_value END)) AS avg
+FROM temperature_records
+WHERE MONTH(record_date) BETWEEN 7 AND 12
+GROUP BY MONTH(record_date)
+ORDER BY MONTH(record_date);
+
+DESCRIPTION:
+SQL query that retrieves monthly temperature statistics from the "temperature_records" table.
+
+The query selects the month of the record date, and calculates the maximum, minimum, and average temperature for each month. The maximum temperature is retrieved for rows where the data_type is 'max', the minimum temperature for rows where the data_type is 'min', and the average temperature for rows where the data_type is 'avg'. The round function is used to round the average temperature to the nearest integer.
+
+The WHERE clause filters the results to only include records with a record date in the months of July through December (inclusive).
+
+The GROUP BY clause groups the results by month of the record date.
+
+The ORDER BY clause orders the results in ascending order by month of the record date.
+
+Overall, this query returns the maximum, minimum, and average temperatures for each month of the second half of the year.

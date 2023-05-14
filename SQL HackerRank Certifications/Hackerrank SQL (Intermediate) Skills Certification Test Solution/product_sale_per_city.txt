@@ -1,0 +1,19 @@
+SELECT ci.city_name,pr.product_name,round(sum(ii.line_total_price),2)
+as tot from city ci,customer cu, invoice i, invoice_item ii, product pr where ci.id=cu.city_id and cu.id = i.customer_id and i.id = ii.invoice_id and ii.product_id =pr.id
+group by ci.city_name,pr.product_name
+order by tot desc, ci.city_name, pr.product_name;
+
+DESCRIPTION:
+This is a SQL query that retrieves the total sales for each product in each city, sorted by the total sales in descending order, then by city name and product name in ascending order.
+
+The query uses table aliases for each of the tables: "ci" for "city", "cu" for "customer", "i" for "invoice", "ii" for "invoice_item", and "pr" for "product".
+
+The FROM clause specifies the tables that will be used in the query, and the WHERE clause specifies the join conditions between the tables: "ci.id=cu.city_id" joins the "city" and "customer" tables, "cu.id=i.customer_id" joins the "customer" and "invoice" tables, "i.id=ii.invoice_id" joins the "invoice" and "invoice_item" tables, and "ii.product_id=pr.id" joins the "invoice_item" and "product" tables.
+
+The GROUP BY clause groups the results by city name and product name.
+
+The SELECT clause retrieves the city name, product name, and total sales for each product in each city, and uses the ROUND function to round the total sales to 2 decimal places.
+
+The ORDER BY clause sorts the results by the total sales in descending order, then by city name and product name in ascending order.
+
+Overall, this query returns a list of total sales for each product in each city, sorted by the total sales in descending order, then by city name and product name in ascending order.

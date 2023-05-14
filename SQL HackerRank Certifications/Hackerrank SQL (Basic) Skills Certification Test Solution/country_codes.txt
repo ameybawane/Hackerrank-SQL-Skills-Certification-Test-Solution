@@ -1,0 +1,16 @@
+SELECT a.customer_id,a.name,concat("+",b.country_code,a.phone_number)
+FROM customers as a
+LEFT join country_codes as b 
+ON a.country=b.country
+ORDER BY a.customer_id;
+
+DESCRIPTION:
+This is a SQL query that retrieves customer phone numbers, along with their customer ID and name, with the country code prepended to the phone number. 
+
+The query selects the customer ID and name from the "customers" table, and concatenates the country code from the "country_codes" table with the phone number from the "customers" table using the CONCAT function. The country code is preceded by a "+" character to conform to the international phone number format.
+
+The LEFT JOIN clause joins the "customers" table with the "country_codes" table based on the "country" column in both tables.
+
+The ORDER BY clause orders the results in ascending order by customer ID.
+
+Overall, this query returns a list of customer phone numbers with their country codes, along with their customer ID and name, sorted by customer ID. If a customer's country is not found in the "country_codes" table, the phone number will still be displayed, but without the country code.

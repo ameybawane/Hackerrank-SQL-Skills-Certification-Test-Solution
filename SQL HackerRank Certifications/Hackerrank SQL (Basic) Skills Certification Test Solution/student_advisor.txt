@@ -1,0 +1,16 @@
+SELECT roll_number,name
+FROM student_information a
+INNER JOIN faculty_information b
+ON a.advisor = b.employee_ID
+WHERE (b.gender = 'M' and b.salary>15000) or (b.gender = 'F' and b.salary>20000);
+
+DESCRIPTION:
+This is a SQL query that retrieves the roll number and name of students who are advised by faculty members that meet certain criteria.
+
+The query uses an INNER JOIN to join the "student_information" table with the "faculty_information" table based on the "advisor" column in the "student_information" table and the "employee_ID" column in the "faculty_information" table.
+
+The WHERE clause specifies two conditions that must be met for a faculty member to be included in the results: their gender must be 'M' and their salary must be greater than 15000, or their gender must be 'F' and their salary must be greater than 20000.
+
+The SELECT clause retrieves the roll number and name of students from the "student_information" table.
+
+Overall, this query returns a list of students who are advised by faculty members who meet the specified criteria.

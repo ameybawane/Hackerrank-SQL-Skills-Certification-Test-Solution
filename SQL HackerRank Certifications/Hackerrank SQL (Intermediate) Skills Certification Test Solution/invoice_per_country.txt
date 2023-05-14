@@ -1,0 +1,20 @@
+SELECT co.country_name,count(*),avg(i.total_price)
+from country co,city ci, customer cu, invoice i
+WHERE co.id= ci.country_id and ci.id=cu.city_id and cu.id=i.customer_id
+group BY co.country_name
+having avg(i.total_price) > (select avg(total_price)from invoice);
+
+DESCRIPTION:
+This is a SQL query that retrieves the average invoice total and count of invoices, grouped by country, for countries where the average invoice total is greater than the overall average invoice total.
+
+The query uses table aliases for each of the tables: "co" for "country", "ci" for "city", "cu" for "customer", and "i" for "invoice". 
+
+The FROM clause specifies the tables that will be used in the query, and the WHERE clause specifies the join conditions between the tables: "co.id=ci.country_id" joins the "country" and "city" tables, "ci.id=cu.city_id" joins the "city" and "customer" tables, and "cu.id=i.customer_id" joins the "customer" and "invoice" tables.
+
+The GROUP BY clause groups the results by country name.
+
+The HAVING clause filters the results to only include countries where the average invoice total is greater than the overall average invoice total. The subquery "(select avg(total_price)from invoice)" retrieves the overall average invoice total.
+
+The SELECT clause retrieves the country name, count of invoices, and average invoice total, and uses the AVG function to calculate the average invoice total.
+
+Overall, this query returns a list of countries with their invoice count and average invoice total, but only for countries where the average invoice total is greater than the overall average invoice total.
